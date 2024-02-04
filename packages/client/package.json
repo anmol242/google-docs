@@ -30,6 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
+  "main": "src/index.tsx",
   "eslintConfig": {
     "extends": [
       "react-app",
