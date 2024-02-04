@@ -5,22 +5,25 @@
   "author": "Anmol Mahajan <anmolmahajan242@gmail.com>",
   "homepage": "https://github.com/anmol242/google-docs#readme",
   "license": "ISC",
-  "main": "lib/server.js",
+  "main": "src/index.ts",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "src": "src"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anmol242/google-docs.git"
   },
   "scripts": {
-    "test": "node ./__tests__/server.test.js"
+    "start": "nodemon start server.js"
   },
   "bugs": {
     "url": "https://github.com/anmol242/google-docs/issues"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3",
+    "typescript": "^5.3.3"
   }
 }
