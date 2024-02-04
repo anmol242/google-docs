@@ -1,10 +1,12 @@
 {
-  "name": "root",
+  "name": "google-docs",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
   "devDependencies": {
     "lerna": "^8.0.2"
   }

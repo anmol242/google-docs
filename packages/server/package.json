@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "0.0.0",
+  "type": "module",
   "description": "This package will contain all the stuff related to google docs backend",
   "author": "Anmol Mahajan <anmolmahajan242@gmail.com>",
   "homepage": "https://github.com/anmol242/google-docs#readme",
@@ -17,7 +18,9 @@
     "url": "git+https://github.com/anmol242/google-docs.git"
   },
   "scripts": {
-    "start": "nodemon start server.js"
+    "start:ts": "tsc -w",
+    "start:server": "nodemon build",
+    "start": "concurrently yarn:start:*"
   },
   "bugs": {
     "url": "https://github.com/anmol242/google-docs/issues"
@@ -25,5 +28,10 @@
   "devDependencies": {
     "nodemon": "^3.0.3",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "socket.io": "^4.7.4",
+    "ts-node": "^10.9.2"
   }
 }

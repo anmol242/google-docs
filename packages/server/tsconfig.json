@@ -13,8 +13,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "outDir": "build"
+    "noEmit": false,
+    "rootDir": "./src",
+    "outDir": "./build"
   },
   "include": ["src"]
 }
