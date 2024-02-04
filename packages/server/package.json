@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "description": "This package will contain all the stuff related to google docs backend",
+  "author": "Anmol Mahajan <anmolmahajan242@gmail.com>",
+  "homepage": "https://github.com/anmol242/google-docs#readme",
+  "license": "ISC",
+  "main": "lib/server.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anmol242/google-docs.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/server.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/anmol242/google-docs/issues"
+  }
+}
