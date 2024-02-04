@@ -1,24 +1,55 @@
 {
   "name": "client",
-  "version": "0.0.0",
-  "description": "This package will contain all the stuff related to google docs front end",
+  "version": "0.1.0",
+  "description": "This package will contain all the stuff related to google docs frontend",
+  "private": true,
   "author": "Anmol Mahajan <anmolmahajan242@gmail.com>",
-  "homepage": "https://github.com/anmol242/google-docs#readme",
-  "license": "ISC",
-  "main": "lib/client.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "quill": "^1.3.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.4.2",
+    "web-vitals": "^2.1.0"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anmol242/google-docs.git"
   },
   "scripts": {
-    "test": "node ./__tests__/client.test.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/quill": "^2.0.14"
   },
   "bugs": {
     "url": "https://github.com/anmol242/google-docs/issues"
