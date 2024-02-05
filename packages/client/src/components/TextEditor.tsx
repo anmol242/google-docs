@@ -5,6 +5,7 @@ import "./textEditor.css";
 import { io, Socket } from "socket.io-client";
 import { useParams } from "react-router-dom";
 
+const SAVE_INTERVAL_MS = 2000;
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
   [{ font: [] }],
@@ -30,6 +31,32 @@ export default function TextEditor() {
       socketInstance.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    if (!socket || !quill) {
+      return;
+    }
+    socket.once("load-document", (document) => {
+      quill.setContents(document);
+      quill.enable();
+    });
+
+    socket.emit("get-document", documentId);
+  }, [socket, quill, documentId]);
+
+  useEffect(() => {
+    if (!socket || !quill) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      socket.emit("save-document", quill.getContents());
+    }, SAVE_INTERVAL_MS);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [socket, quill]);
 
   // For receiving events from the server
   useEffect(() => {
@@ -71,18 +98,6 @@ export default function TextEditor() {
     };
   }, [quill, socket]);
 
-  useEffect(() => {
-    if (!socket || !quill) {
-      return;
-    }
-    socket.once("load-document", (document) => {
-      quill.setContents(document);
-      quill.enable();
-    });
-
-    socket.emit("get-document", documentId);
-  }, [socket, quill, documentId]);
-
   const containerRef = useCallback((wrapper: HTMLDivElement) => {
     if (!wrapper) {
       return;
@@ -98,7 +113,7 @@ export default function TextEditor() {
     });
 
     quillInstance.disable();
-    quillInstance.setText("Loading....")
+    quillInstance.setText("Loading....");
     setQuill(quillInstance);
 
     return () => {

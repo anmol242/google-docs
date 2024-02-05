@@ -1,7 +1,6 @@
 {
   "name": "server",
   "version": "0.0.0",
-  "type": "module",
   "description": "This package will contain all the stuff related to google docs backend",
   "author": "Anmol Mahajan <anmolmahajan242@gmail.com>",
   "homepage": "https://github.com/anmol242/google-docs#readme",
@@ -31,6 +30,7 @@
   },
   "dependencies": {
     "concurrently": "^8.2.2",
+    "mongoose": "^8.1.1",
     "socket.io": "^4.7.4",
     "ts-node": "^10.9.2"
   }
