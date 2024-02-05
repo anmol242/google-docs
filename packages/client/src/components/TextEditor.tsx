@@ -3,6 +3,7 @@ import Quill, { DeltaStatic, Sources } from "quill";
 import "quill/dist/quill.snow.css";
 import "./textEditor.css";
 import { io, Socket } from "socket.io-client";
+import { useParams } from "react-router-dom";
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -19,6 +20,7 @@ const TOOLBAR_OPTIONS = [
 export default function TextEditor() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [quill, setQuill] = useState<Quill | null>(null);
+  const { id: documentId } = useParams();
 
   useEffect(() => {
     const socketInstance = io("http://localhost:3001");
@@ -36,7 +38,6 @@ export default function TextEditor() {
     }
 
     const handler = (delta: DeltaStatic) => {
-      console.log('------------------', delta);
       quill.updateContents(delta);
     };
     socket.on("receive-changes", handler);
@@ -70,6 +71,18 @@ export default function TextEditor() {
     };
   }, [quill, socket]);
 
+  useEffect(() => {
+    if (!socket || !quill) {
+      return;
+    }
+    socket.once("load-document", (document) => {
+      quill.setContents(document);
+      quill.enable();
+    });
+
+    socket.emit("get-document", documentId);
+  }, [socket, quill, documentId]);
+
   const containerRef = useCallback((wrapper: HTMLDivElement) => {
     if (!wrapper) {
       return;
@@ -83,6 +96,9 @@ export default function TextEditor() {
       theme: "snow",
       modules: { toolbar: TOOLBAR_OPTIONS },
     });
+
+    quillInstance.disable();
+    quillInstance.setText("Loading....")
     setQuill(quillInstance);
 
     return () => {
